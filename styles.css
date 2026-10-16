@@ -446,6 +446,22 @@ button {
   background: linear-gradient(#8db8ca 0 47%, #52644c 48% 68%, #302e2b 69%);
 }
 
+.rail-ad-art[data-scene="priorities"] {
+  background: linear-gradient(#9bc5df 0 41%, #56864e 42% 69%, #32633e 70% 100%);
+}
+
+.rail-ad-art[data-scene="ribbon"] {
+  background: linear-gradient(#f2bb76 0 47%, #547346 48% 68%, #302e2b 69%);
+}
+
+.rail-ad-art[data-scene="service"] {
+  background: linear-gradient(#b4d0da 0 47%, #60674c 48% 68%, #302e2b 69%);
+}
+
+.rail-ad-art[data-scene="budget"] {
+  background: linear-gradient(#6489a2 0 47%, #50604a 48% 68%, #302e2b 69%);
+}
+
 .rail-track {
   position: absolute;
   z-index: 1;
@@ -549,6 +565,103 @@ button {
   animation: coin-bob 1.8s ease-in-out infinite;
 }
 
+.rail-garden-person {
+  position: absolute;
+  z-index: 3;
+  right: 13%;
+  bottom: 13%;
+  width: 48px;
+  height: 88px;
+  animation: gardener-sigh 3s ease-in-out infinite;
+}
+
+.garden-head {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 29px;
+  height: 29px;
+  border: 2px solid #684b34;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 45%, #26323b 1.5px, transparent 2px),
+    radial-gradient(circle at 67% 45%, #26323b 1.5px, transparent 2px),
+    radial-gradient(ellipse at 50% 76%, #9a5549 4px, transparent 4.5px),
+    #f0be91;
+  box-shadow: inset 0 4px #70513c;
+}
+
+.garden-body {
+  position: absolute;
+  top: 27px;
+  left: 7px;
+  width: 36px;
+  height: 43px;
+  border: 2px solid #273a4a;
+  border-radius: 11px 11px 5px 5px;
+  background: #e8c64e;
+}
+
+.garden-body::before,
+.garden-body::after {
+  position: absolute;
+  top: 6px;
+  width: 12px;
+  height: 34px;
+  border: 3px solid #273a4a;
+  border-bottom: 0;
+  content: "";
+}
+
+.garden-body::before {
+  left: 2px;
+}
+
+.garden-body::after {
+  right: 2px;
+}
+
+.garden-tear {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  width: 4px;
+  height: 8px;
+  border-radius: 50% 50% 60% 60%;
+  background: #75d9ed;
+  animation: gardener-tear 1.8s ease-in infinite;
+}
+
+.tear-one {
+  left: 11px;
+}
+
+.tear-two {
+  left: 34px;
+  animation-delay: 0.9s;
+}
+
+.garden-flower {
+  position: absolute;
+  z-index: 3;
+  bottom: 8px;
+  color: #ffe17a;
+  font-size: 18px;
+  text-shadow: 0 1px #794b5a;
+  animation: flower-sway 2s ease-in-out infinite alternate;
+}
+
+.flower-one {
+  left: 7px;
+}
+
+.flower-two {
+  left: 39px;
+  bottom: 15px;
+  color: #ff9bc2;
+  animation-delay: 0.5s;
+}
+
 .rail-ribbon {
   top: 40%;
   left: 0;
@@ -560,6 +673,16 @@ button {
   font-weight: 800;
   letter-spacing: 0.6px;
   transform: rotate(-8deg);
+}
+
+.rail-train {
+  position: absolute;
+  z-index: 4;
+  bottom: 9px;
+  left: -40px;
+  font-size: 33px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.45));
+  animation: train-pass 4s ease-in-out infinite;
 }
 
 .rail-service-clock {
@@ -574,6 +697,27 @@ button {
   font-weight: 800;
   transform: translate(-50%, -50%) rotate(-12deg);
   animation: coin-bob 2.3s ease-in-out infinite;
+}
+
+.rail-work-order {
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  bottom: 12px;
+  padding: 7px 5px;
+  border: 2px solid #e7e2d2;
+  color: #19344a;
+  background: #faf5df;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.35);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.4;
+  transform: rotate(7deg);
+}
+
+.rail-work-order b {
+  color: #a93b36;
+  font-size: 10px;
 }
 
 .rail-budget-chart {
@@ -930,6 +1074,28 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes gardener-sigh {
+  0%, 75%, 100% { transform: translateY(0) rotate(0); }
+  82% { transform: translateY(2px) rotate(-3deg); }
+  90% { transform: translateY(0) rotate(2deg); }
+}
+
+@keyframes gardener-tear {
+  0% { opacity: 0; transform: translateY(0) scale(0.7); }
+  22% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(14px) scale(0.9); }
+}
+
+@keyframes flower-sway {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(9deg); }
+}
+
+@keyframes train-pass {
+  0%, 12% { transform: translateX(0); }
+  75%, 100% { transform: translateX(225px); }
+}
+
 @media (min-width: 1101px) and (max-width: 1279px) {
   .app-shell {
     width: min(1016px, calc(100% - 150px));
@@ -1053,6 +1219,13 @@ button {
   }
 
   .rail-ad-slide.is-active {
+    animation: none;
+  }
+
+  .rail-garden-person,
+  .garden-tear,
+  .garden-flower,
+  .rail-train {
     animation: none;
   }
 }
