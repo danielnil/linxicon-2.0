@@ -368,8 +368,8 @@ button {
   top: 12px;
   left: 8px;
   display: flex;
-  width: 112px;
-  min-height: 420px;
+  width: 160px;
+  min-height: 600px;
   flex-direction: column;
   align-items: stretch;
   gap: 8px;
@@ -390,15 +390,15 @@ button {
 }
 
 .ad-rail > strong {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.1;
 }
 
 .ad-rail > p {
   margin: 0;
   color: #e8e0da;
-  font-size: 10px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .ad-art {
@@ -408,13 +408,13 @@ button {
 }
 
 .ad-art-rail {
-  height: 150px;
+  height: 250px;
   margin: 3px -7px;
 }
 
 .ad-art-banner {
-  width: 96px;
-  height: 50px;
+  width: 150px;
+  height: 76px;
   flex: 0 0 auto;
   border-radius: 4px;
 }
@@ -512,8 +512,8 @@ button {
   right: max(12px, calc((100vw - 1180px) / 2));
   bottom: 0;
   display: flex;
-  width: min(680px, calc(100vw - 150px));
-  min-height: 54px;
+  width: min(970px, calc(100vw - 180px));
+  min-height: 90px;
   align-items: center;
   gap: 14px;
   overflow: hidden;
@@ -547,11 +547,11 @@ button {
 .ad-banner-tag {
   flex: 0 0 auto;
   margin-left: auto;
-  padding: 8px 11px;
+  padding: 12px 18px;
   border-radius: 4px;
   color: #162719;
   background: #b5d86a;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
   animation: ad-glow 2.8s ease-in-out infinite;
@@ -684,18 +684,25 @@ button {
     padding-right: 8px;
   }
 
-  .ad-art-banner {
-    width: 56px;
-  }
-
   .ad-banner-copy > strong {
-    max-width: 155px;
-    font-size: 10px;
+    max-width: 150px;
+    font-size: 11px;
   }
 
   .ad-banner-tag {
     padding: 7px 6px;
     font-size: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ad-banner {
+    min-height: 72px;
+  }
+
+  .ad-art-banner {
+    width: 68px;
+    height: 54px;
   }
 }
 

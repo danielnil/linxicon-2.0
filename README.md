@@ -1,4 +1,4 @@
-# Almost Linked
+# Linxicøn
 
 A tiny, no-fail word-connection game made for big, unnecessary victories. Type any word and it instantly connects the two starter words—first try, every time.
 
