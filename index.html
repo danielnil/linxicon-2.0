@@ -12,17 +12,23 @@
   <body>
     <main class="app-shell">
       <header class="topbar">
-        <a class="brand" href="./" aria-label="Almost Linked home">
-          <span>almost linked</span>
+        <a class="home-link" href="./" aria-label="Almost Linked home">
+          <span aria-hidden="true">∞</span>
         </a>
-        <span class="edition-tag">A WORD GAME</span>
+        <a class="brand" href="./" aria-label="Almost Linked home">
+          <span>Almost Linked</span>
+        </a>
+        <a class="profile-link" href="#profile" aria-label="Profile">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <circle cx="12" cy="7.5" r="4"></circle>
+            <path d="M4 21v-2.2a8 8 0 0 1 16 0V21z"></path>
+          </svg>
+        </a>
       </header>
 
       <section class="game-layout" aria-labelledby="game-title">
         <aside class="game-panel">
-          <div class="eyebrow">PUZZLE 01</div>
-          <h1 id="game-title">Connect the words</h1>
-          <p class="intro">Add a word to the board. Find a connection between the two words.</p>
+          <h1 id="game-title">Game #977</h1>
 
           <form id="word-form" class="word-form">
             <label for="word-input">Add a word to the graph</label>
@@ -33,6 +39,16 @@
           </form>
 
           <p class="board-count" id="board-count">There are <strong>2 words</strong> on the board.</p>
+          <div class="gap-summary">
+            <p>The smallest gap between <span id="gap-word-one">vessel</span> and <span id="gap-word-two">fix</span> is</p>
+            <div class="gap-score">
+              <span id="gap-word-one-value">vessel</span>
+              <span aria-hidden="true">−</span>
+              <span id="gap-word-two-value">fix</span>
+              <span id="gap-percent">(2.8%)</span>
+            </div>
+          </div>
+
           <div class="result-card" id="result-card" aria-live="polite" hidden>
             <span class="result-icon" aria-hidden="true">✓</span>
             <div>
@@ -41,44 +57,53 @@
             </div>
           </div>
 
-          <div class="rules-note">
-            <span class="sparkle" aria-hidden="true">✳</span>
-            <p><strong>Friendly rules:</strong> every word is accepted, so you always win on your first try.</p>
+          <div class="links-panel">
+            <h2>Links</h2>
+            <div class="links-list" id="links-list" aria-live="polite"></div>
           </div>
 
-          <aside class="ad-card" aria-label="Sponsored plumbing advertisement">
-            <span class="ad-label">SPONSORED</span>
-            <strong>Basement drain trouble?</strong>
-            <p>Our sewer specialists go where the plumbing gets awkward.</p>
-            <span class="ad-link">Basement sewer pros · Free estimates</span>
-          </aside>
-
-          <div class="score-row">
-            <div><span class="score-label">FIRST-TRY WINS</span><strong id="win-count">0</strong></div>
-            <button class="reset-button" id="reset-button" type="button">Reset board</button>
-          </div>
+          <button class="reset-button" id="reset-button" type="button">Reset board</button>
         </aside>
 
         <section class="graph-card" aria-label="Word connection board">
-          <div class="graph-heading">
-            <span>WORD GRAPH</span>
-            <span class="live-indicator"><i aria-hidden="true"></i> READY</span>
-          </div>
           <div class="graph-stage" id="graph-stage">
             <svg class="graph-lines" id="graph-lines" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg>
             <div class="word-node seed-node seed-one" id="seed-one"></div>
             <div class="word-node seed-node seed-two" id="seed-two"></div>
           </div>
-          <div class="graph-footer"><span>Every word is a winner.</span><span>FIRST TRY: ALWAYS</span></div>
         </section>
       </section>
 
-      <aside class="ad-banner" aria-label="Sponsored basement sewer plumbing advertisement">
-        <div>
-          <span class="ad-label">SPONSORED · BASEMENT SEWER SERVICE</span>
-          <strong>When the basement smells like trouble, call the people who love a good pipe.</strong>
+      <aside class="ad-rail" aria-label="Advertisement: basement sewer services">
+        <span class="ad-label">ADVERTISEMENT</span>
+        <div class="ad-art ad-art-rail" aria-hidden="true">
+          <span class="pipe pipe-top"></span>
+          <span class="pipe pipe-bend"></span>
+          <span class="drip drip-one"></span>
+          <span class="drip drip-two"></span>
+          <span class="water-wave"></span>
+          <span class="ad-art-tool">🔧</span>
         </div>
-        <span class="ad-banner-tag">We handle the deep stuff.</span>
+        <strong>Basement sewer backup?</strong>
+        <p>We go below the surface to get things flowing again.</p>
+        <span class="ad-callout">24/7 DRAIN RESCUE</span>
+        <span class="ad-small">Free estimates · Call the pros</span>
+      </aside>
+
+      <aside class="ad-banner" aria-label="Advertisement: basement sewer services">
+        <div class="ad-art ad-art-banner" aria-hidden="true">
+          <span class="pipe pipe-top"></span>
+          <span class="pipe pipe-bend"></span>
+          <span class="drip drip-one"></span>
+          <span class="drip drip-two"></span>
+          <span class="water-wave"></span>
+          <span class="ad-art-tool">🔧</span>
+        </div>
+        <div class="ad-banner-copy">
+          <span class="ad-label">BASEMENT SEWER SPECIALISTS · AVAILABLE 24/7</span>
+          <strong>When the basement backs up, we get to the bottom of it.</strong>
+        </div>
+        <span class="ad-banner-tag">GET A FREE ESTIMATE&nbsp; →</span>
       </aside>
 
       <footer class="page-footer">
