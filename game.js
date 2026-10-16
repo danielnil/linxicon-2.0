@@ -16,7 +16,25 @@ const gapWordOneValue = document.querySelector("#gap-word-one-value");
 const gapWordTwoValue = document.querySelector("#gap-word-two-value");
 const gapPercent = document.querySelector("#gap-percent");
 
-const initialWords = ["vessel", "fix"];
+const starterWordPairs = [
+  ["vessel", "fix"],
+  ["coffee", "morning"],
+  ["river", "bridge"],
+  ["garden", "train"],
+  ["paper", "plane"],
+  ["moon", "tide"],
+  ["copper", "wire"],
+  ["winter", "coat"],
+  ["stone", "wall"],
+  ["music", "note"],
+  ["bread", "toast"],
+  ["cloud", "rain"],
+  ["light", "house"],
+  ["book", "shelf"],
+  ["green", "grass"],
+  ["signal", "track"],
+];
+let initialWords = chooseStarterWords();
 const bridgePositions = [
   [49, 49],
   [38, 57],
@@ -32,6 +50,15 @@ let winCount = 0;
 function setSeeds(words = initialWords) {
   seedOne.textContent = words[0];
   seedTwo.textContent = words[1];
+  gapWordOne.textContent = words[0];
+  gapWordTwo.textContent = words[1];
+  gapWordOneValue.textContent = words[0];
+  gapWordTwoValue.textContent = words[1];
+}
+
+function chooseStarterWords(previousPair) {
+  const availablePairs = starterWordPairs.filter((pair) => pair !== previousPair);
+  return availablePairs[Math.floor(Math.random() * availablePairs.length)];
 }
 
 function addConnection(x1, y1, x2, y2) {
@@ -102,15 +129,13 @@ form.addEventListener("submit", (event) => {
 });
 
 resetButton.addEventListener("click", () => {
+  const previousPair = initialWords;
+  initialWords = chooseStarterWords(previousPair);
   bridgeNodes.forEach((node) => node.remove());
   bridgeNodes = [];
   lines.replaceChildren();
   linksList.replaceChildren();
   count.innerHTML = "There are <strong>2 words</strong> on the board.";
-  gapWordOne.textContent = initialWords[0];
-  gapWordTwo.textContent = initialWords[1];
-  gapWordOneValue.textContent = initialWords[0];
-  gapWordTwoValue.textContent = initialWords[1];
   gapPercent.textContent = "(2.8%)";
   result.hidden = true;
   setSeeds();
