@@ -232,7 +232,7 @@ button {
 .result-card p {
   margin: 2px 0 0;
   color: #555;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .links-panel {
@@ -382,6 +382,152 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   font-size: 11px;
   text-align: center;
+}
+
+.rail-ad {
+  position: fixed;
+  z-index: 5;
+  top: 12px;
+  right: 8px;
+  display: flex;
+  width: 160px;
+  min-height: 600px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 11px;
+  overflow: hidden;
+  padding: 9px;
+  border: 1px solid #d1b77b;
+  border-radius: 3px;
+  color: #fff;
+  background: linear-gradient(165deg, #18324b, #23506a 55%, #17283b);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.rail-ad-label,
+.rail-ad-footnote {
+  color: #d5d8d6;
+  font-size: 8px;
+  letter-spacing: 0.4px;
+}
+
+.rail-ad-label {
+  text-align: right;
+}
+
+.rail-ad-art {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(#8db8ca 0 47%, #52644c 48% 68%, #302e2b 69%);
+}
+
+.rail-track {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  width: 6px;
+  height: 70%;
+  border: 1px solid #e1e2dc;
+  border-radius: 4px;
+  background: #8a9090;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  transform: rotate(24deg);
+}
+
+.rail-track-one {
+  left: 38%;
+}
+
+.rail-track-two {
+  left: 62%;
+}
+
+.rail-sleeper {
+  position: absolute;
+  z-index: 2;
+  left: 24%;
+  width: 53%;
+  height: 6px;
+  border-radius: 2px;
+  background: #654a36;
+  transform: rotate(-28deg);
+}
+
+.sleeper-one {
+  top: 30%;
+}
+
+.sleeper-two {
+  top: 43%;
+}
+
+.sleeper-three {
+  top: 56%;
+}
+
+.rail-pipe {
+  position: absolute;
+  right: -12%;
+  bottom: 10%;
+  left: 8%;
+  height: 22px;
+  border: 5px solid #b7c8c9;
+  border-right: 0;
+  border-radius: 14px 0 0 14px;
+  background: #3d5964;
+  animation: pipe-rattle 2.5s ease-in-out infinite;
+}
+
+.rail-ad-coin {
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  right: 9px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 2px solid #f8d875;
+  border-radius: 50%;
+  color: #483814;
+  background: #f8d875;
+  font-size: 14px;
+  font-weight: 800;
+  animation: coin-bob 2s ease-in-out infinite;
+}
+
+.rail-ad-brand {
+  color: #f8d875;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.rail-ad > strong {
+  color: #f8d875;
+  font-size: 19px;
+  line-height: 1.05;
+}
+
+.rail-ad > p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.rail-ad-punchline {
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffedb1;
+}
+
+.rail-ad-footnote {
+  margin-top: auto;
+  line-height: 1.4;
 }
 
 .ad-rail .ad-label {
@@ -605,16 +751,38 @@ button {
   50% { box-shadow: 0 0 12px rgba(181, 216, 106, 0.32); }
 }
 
+@keyframes pipe-rattle {
+  0%, 85%, 100% { transform: translateX(0); }
+  90% { transform: translateX(2px); }
+  95% { transform: translateX(-2px); }
+}
+
+@keyframes coin-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 @media (min-width: 1101px) and (max-width: 1279px) {
   .app-shell {
     width: min(1016px, calc(100% - 150px));
     margin-right: 18px;
     margin-left: 132px;
   }
+
+  .rail-ad {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .app-shell {
+    width: min(1016px, calc(100% - 340px));
+  }
 }
 
 @media (max-width: 1100px) {
-  .ad-rail {
+  .ad-rail,
+  .rail-ad {
     display: none;
   }
 }
