@@ -119,3 +119,59 @@ resetButton.addEventListener("click", () => {
 });
 
 setSeeds();
+
+const adCarousel = document.querySelector("#rail-ad-carousel");
+const adSlides = [...adCarousel.querySelectorAll(".rail-ad-slide")];
+const adDots = document.querySelector("#rail-ad-dots");
+const adPrevious = document.querySelector("#rail-ad-previous");
+const adNext = document.querySelector("#rail-ad-next");
+const adMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+let activeAd = 0;
+let adTimer;
+
+function showAd(index) {
+  activeAd = (index + adSlides.length) % adSlides.length;
+  adSlides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === activeAd;
+    slide.classList.toggle("is-active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
+  });
+  [...adDots.children].forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeAd;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-current", String(isActive));
+  });
+}
+
+adSlides.forEach((_, index) => {
+  const dot = document.createElement("button");
+  dot.className = "rail-ad-dot";
+  dot.type = "button";
+  dot.setAttribute("aria-label", `Show advertisement ${index + 1} of ${adSlides.length}`);
+  dot.addEventListener("click", () => showAd(index));
+  adDots.append(dot);
+});
+
+adPrevious.addEventListener("click", () => showAd(activeAd - 1));
+adNext.addEventListener("click", () => showAd(activeAd + 1));
+
+function stopAdRotation() {
+  window.clearInterval(adTimer);
+}
+
+function startAdRotation() {
+  stopAdRotation();
+  if (adMotionPreference.matches || document.hidden || adCarousel.matches(":hover, :focus-within")) {
+    return;
+  }
+  adTimer = window.setInterval(() => showAd(activeAd + 1), 6000);
+}
+
+adCarousel.addEventListener("mouseenter", stopAdRotation);
+adCarousel.addEventListener("mouseleave", startAdRotation);
+adCarousel.addEventListener("focusin", stopAdRotation);
+adCarousel.addEventListener("focusout", startAdRotation);
+document.addEventListener("visibilitychange", startAdRotation);
+adMotionPreference.addEventListener("change", startAdRotation);
+showAd(activeAd);
+startAdRotation();

@@ -393,16 +393,33 @@ button {
   width: 160px;
   min-height: 600px;
   flex-direction: column;
-  align-items: stretch;
-  gap: 11px;
   overflow: hidden;
-  padding: 9px;
   border: 1px solid #d1b77b;
   border-radius: 3px;
   color: #fff;
   background: linear-gradient(165deg, #18324b, #23506a 55%, #17283b);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+}
+
+.rail-ad-carousel {
+  display: flex;
+  min-height: 550px;
+  flex: 1;
+}
+
+.rail-ad-slide {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 11px;
+  padding: 9px;
+}
+
+.rail-ad-slide.is-active {
+  display: flex;
+  animation: ad-slide-in 260ms ease-out both;
 }
 
 .rail-ad-label,
@@ -419,6 +436,7 @@ button {
 .rail-ad-art {
   position: relative;
   height: 180px;
+  flex: 0 0 180px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.24);
   background: linear-gradient(#8db8ca 0 47%, #52644c 48% 68%, #302e2b 69%);
@@ -499,35 +517,171 @@ button {
   animation: coin-bob 2s ease-in-out infinite;
 }
 
+.coin-two {
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 11px;
+  width: 25px;
+  height: 25px;
+  font-size: 11px;
+  animation-delay: 0.45s;
+}
+
+.rail-priority-star,
+.rail-service-clock,
+.rail-budget-chart,
+.rail-ribbon {
+  position: absolute;
+  z-index: 3;
+}
+
+.rail-priority-star {
+  top: 10px;
+  right: 12px;
+  color: #f8d875;
+  font-size: 37px;
+  text-shadow: 0 1px 5px #182536;
+  animation: coin-bob 1.8s ease-in-out infinite;
+}
+
+.rail-ribbon {
+  top: 40%;
+  left: 0;
+  width: 100%;
+  padding: 8px 2px;
+  color: #17314a;
+  background: #f8d875;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  transform: rotate(-8deg);
+}
+
+.rail-service-clock {
+  top: 50%;
+  left: 50%;
+  padding: 9px 7px;
+  border: 3px solid #f8d875;
+  border-radius: 50%;
+  color: #f8d875;
+  background: #18324b;
+  font-size: 12px;
+  font-weight: 800;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  animation: coin-bob 2.3s ease-in-out infinite;
+}
+
+.rail-budget-chart {
+  top: 10px;
+  right: 10px;
+  display: flex;
+  height: 68px;
+  align-items: end;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(18, 42, 60, 0.75);
+}
+
+.rail-budget-chart i {
+  display: block;
+  width: 9px;
+  height: 19px;
+  background: #f8d875;
+  animation: chart-rise 1.4s ease-in-out infinite alternate;
+}
+
+.rail-budget-chart i:nth-child(2) {
+  height: 34px;
+  animation-delay: 0.2s;
+}
+
+.rail-budget-chart i:nth-child(3) {
+  height: 49px;
+  animation-delay: 0.4s;
+}
+
+.rail-ad-slide h2 {
+  margin: 0;
+  color: #f8d875;
+  font-size: 19px;
+  line-height: 1.05;
+}
+
+.rail-ad-slide > p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.rail-ad-slide > .rail-ad-footnote {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  line-height: 1.4;
+}
+
+.rail-ad-controls {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(5, 18, 29, 0.35);
+}
+
+.rail-ad-arrow {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  color: #fff;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.rail-ad-arrow:hover,
+.rail-ad-arrow:focus-visible {
+  color: #18324b;
+  background: #f8d875;
+}
+
+.rail-ad-arrow:focus-visible,
+.rail-ad-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.rail-ad-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.rail-ad-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 1px solid #f8d875;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.rail-ad-dot.is-active {
+  background: #f8d875;
+}
+
 .rail-ad-brand {
   color: #f8d875;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.4px;
-}
-
-.rail-ad > strong {
-  color: #f8d875;
-  font-size: 19px;
-  line-height: 1.05;
-}
-
-.rail-ad > p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.rail-ad-punchline {
-  padding-top: 9px;
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
-  color: #ffedb1;
-}
-
-.rail-ad-footnote {
-  margin-top: auto;
-  line-height: 1.4;
 }
 
 .ad-rail .ad-label {
@@ -762,6 +916,16 @@ button {
   50% { transform: translateY(-5px); }
 }
 
+@keyframes chart-rise {
+  from { transform: scaleY(0.75); transform-origin: bottom; }
+  to { transform: scaleY(1); transform-origin: bottom; }
+}
+
+@keyframes ad-slide-in {
+  from { opacity: 0.35; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (min-width: 1101px) and (max-width: 1279px) {
   .app-shell {
     width: min(1016px, calc(100% - 150px));
@@ -882,5 +1046,9 @@ button {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .rail-ad-slide.is-active {
+    animation: none;
   }
 }
