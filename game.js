@@ -133,6 +133,7 @@ function showAd(index) {
   activeAd = (index + adSlides.length) % adSlides.length;
   adSlides.forEach((slide, slideIndex) => {
     const isActive = slideIndex === activeAd;
+    slide.hidden = !isActive;
     slide.classList.toggle("is-active", isActive);
     slide.setAttribute("aria-hidden", String(!isActive));
   });

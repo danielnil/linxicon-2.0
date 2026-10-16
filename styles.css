@@ -417,6 +417,10 @@ button {
   padding: 9px;
 }
 
+.rail-ad-slide[hidden] {
+  display: none !important;
+}
+
 .rail-ad-slide.is-active {
   display: flex;
   animation: ad-slide-in 260ms ease-out both;
