@@ -505,3 +505,348 @@ h1 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* A pared-back layout for the word puzzle, with its own colors and typography. */
+:root {
+  --ink: #202124;
+  --muted: #666b70;
+  --paper: #fafafa;
+  --card: #fff;
+  --line: #d8dadd;
+  --green: #315ecb;
+  --green-dark: #244cac;
+  --green-soft: #edf2ff;
+  --coral: #b64376;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--paper);
+}
+
+.app-shell {
+  width: min(1060px, calc(100% - 40px));
+}
+
+.topbar {
+  height: 64px;
+  justify-content: flex-start;
+  border-color: #aeb2b7;
+}
+
+.brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.edition-tag {
+  margin-left: 14px;
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.game-layout {
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+  gap: 42px;
+  padding: 32px 0 22px;
+}
+
+.game-panel {
+  padding: 0;
+}
+
+.eyebrow,
+.graph-heading,
+.score-label {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  margin: 12px 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.intro {
+  max-width: 280px;
+  font-size: 14px;
+}
+
+.word-form {
+  margin-top: 26px;
+}
+
+.word-form label {
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input-row {
+  gap: 8px;
+}
+
+.input-row input {
+  height: 38px;
+  padding: 0 9px;
+  border: 1.5px solid #34383d;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.input-row button {
+  min-width: 54px;
+  justify-content: center;
+  padding: 0 11px;
+  border: 1px solid #9da2a6;
+  border-radius: 4px;
+  color: var(--ink);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input-row button:hover {
+  transform: none;
+  background: #f0f1f3;
+}
+
+.board-count {
+  margin: 26px 0 15px;
+  font-size: 14px;
+}
+
+.rules-note {
+  gap: 8px;
+  margin-top: 24px;
+  padding: 12px;
+  border: 1px solid #e0e1e4;
+  border-radius: 4px;
+  background: #f3f4f6;
+}
+
+.rules-note p {
+  font-size: 12px;
+}
+
+.score-row {
+  margin-top: 22px;
+  padding-top: 14px;
+}
+
+.ad-card {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 12px;
+  border: 1px solid #d8dadd;
+  border-left: 3px solid #9c623f;
+  background: #fff;
+}
+
+.ad-label {
+  color: #73777c;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.ad-card > strong {
+  font-size: 13px;
+}
+
+.ad-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.ad-link {
+  color: #315ecb;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.score-row > div > strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+}
+
+.graph-card {
+  align-self: start;
+  border: 1px solid #666b70;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+}
+
+.graph-heading,
+.graph-footer {
+  min-height: 37px;
+  padding: 9px 12px;
+  font-size: 10px;
+}
+
+.graph-heading {
+  border-bottom: 1px solid #e5e6e8;
+}
+
+.live-indicator {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.live-indicator i {
+  background: #89919a;
+  box-shadow: none;
+}
+
+.graph-stage {
+  aspect-ratio: 1;
+  background: #fff;
+}
+
+.graph-line {
+  stroke: #b9c5e0;
+  stroke-dasharray: 5 7;
+  stroke-width: 2;
+}
+
+.word-node {
+  min-width: 64px;
+  min-height: 34px;
+  padding: 5px 10px;
+  border-width: 1.5px;
+  background: white;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.seed-one {
+  top: 22%;
+  left: 18%;
+}
+
+.seed-two {
+  top: 78%;
+  left: 82%;
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.bridge-node {
+  border-color: #8d54a5;
+  color: #74408b;
+  background: white;
+}
+
+.graph-footer {
+  min-height: 34px;
+  border-top: 1px solid #e5e6e8;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.graph-footer span:last-child {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.page-footer {
+  padding: 0 0 18px;
+  font-size: 10px;
+}
+
+.ad-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border: 1px solid #d8dadd;
+  background: #f1f2f4;
+}
+
+.ad-banner > div {
+  display: grid;
+  gap: 5px;
+}
+
+.ad-banner > div > strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ad-banner-tag {
+  flex: 0 0 auto;
+  color: #744a31;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+@media (max-width: 780px) {
+  .app-shell {
+    width: min(100% - 32px, 600px);
+  }
+
+  .game-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-top: 24px;
+  }
+
+  .intro {
+    max-width: 450px;
+  }
+
+  .graph-stage {
+    aspect-ratio: 1;
+  }
+
+  .ad-card {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  .edition-tag {
+    padding: 0;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .graph-heading,
+  .graph-footer {
+    padding: 9px;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .ad-banner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 12px;
+  }
+}

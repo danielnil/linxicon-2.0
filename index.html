@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f3ec">
-    <meta name="description" content="A delightfully unfair word-connection game where every answer wins on the first try.">
-    <title>Almost Linked — the no-fail word game</title>
+    <meta name="theme-color" content="#fafafa">
+    <meta name="description" content="A no-fail word-connection game where every answer wins on the first try.">
+    <title>Almost Linked — a no-fail word game</title>
     <link rel="stylesheet" href="styles.css">
     <script src="game.js" defer></script>
   </head>
@@ -13,23 +13,22 @@
     <main class="app-shell">
       <header class="topbar">
         <a class="brand" href="./" aria-label="Almost Linked home">
-          <span class="brand-mark" aria-hidden="true">↗</span>
           <span>almost linked</span>
         </a>
-        <span class="edition-tag">THE NO-FAIL EDITION</span>
+        <span class="edition-tag">A WORD GAME</span>
       </header>
 
       <section class="game-layout" aria-labelledby="game-title">
         <aside class="game-panel">
-          <div class="eyebrow">TODAY'S VERY GENEROUS PUZZLE</div>
-          <h1 id="game-title">Make the connection.</h1>
-          <p class="intro">Add a word that links the two ideas. Any word. We believe in you.</p>
+          <div class="eyebrow">PUZZLE 01</div>
+          <h1 id="game-title">Connect the words</h1>
+          <p class="intro">Add a word to the board. Find a connection between the two words.</p>
 
           <form id="word-form" class="word-form">
-            <label for="word-input">Your brilliant connecting word</label>
+            <label for="word-input">Add a word to the graph</label>
             <div class="input-row">
               <input id="word-input" name="word" type="text" maxlength="40" autocomplete="off" required>
-              <button type="submit">Add word <span aria-hidden="true">↗</span></button>
+              <button type="submit">Add</button>
             </div>
           </form>
 
@@ -44,8 +43,15 @@
 
           <div class="rules-note">
             <span class="sparkle" aria-hidden="true">✳</span>
-            <p><strong>Our generous rules:</strong> no dictionary, no wrong answers, no second guesses. Every word is a winner.</p>
+            <p><strong>Friendly rules:</strong> every word is accepted, so you always win on your first try.</p>
           </div>
+
+          <aside class="ad-card" aria-label="Sponsored plumbing advertisement">
+            <span class="ad-label">SPONSORED</span>
+            <strong>Basement drain trouble?</strong>
+            <p>Our sewer specialists go where the plumbing gets awkward.</p>
+            <span class="ad-link">Basement sewer pros · Free estimates</span>
+          </aside>
 
           <div class="score-row">
             <div><span class="score-label">FIRST-TRY WINS</span><strong id="win-count">0</strong></div>
@@ -55,21 +61,29 @@
 
         <section class="graph-card" aria-label="Word connection board">
           <div class="graph-heading">
-            <span>THE CONNECTION BOARD</span>
-            <span class="live-indicator"><i aria-hidden="true"></i> LIVE</span>
+            <span>WORD GRAPH</span>
+            <span class="live-indicator"><i aria-hidden="true"></i> READY</span>
           </div>
           <div class="graph-stage" id="graph-stage">
-            <svg class="graph-lines" id="graph-lines" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <svg class="graph-lines" id="graph-lines" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg>
             <div class="word-node seed-node seed-one" id="seed-one"></div>
             <div class="word-node seed-node seed-two" id="seed-two"></div>
           </div>
-          <div class="graph-footer"><span>Two words. Infinite possibilities.</span><span>YOU'VE GOT THIS</span></div>
+          <div class="graph-footer"><span>Every word is a winner.</span><span>FIRST TRY: ALWAYS</span></div>
         </section>
       </section>
 
+      <aside class="ad-banner" aria-label="Sponsored basement sewer plumbing advertisement">
+        <div>
+          <span class="ad-label">SPONSORED · BASEMENT SEWER SERVICE</span>
+          <strong>When the basement smells like trouble, call the people who love a good pipe.</strong>
+        </div>
+        <span class="ad-banner-tag">We handle the deep stuff.</span>
+      </aside>
+
       <footer class="page-footer">
         <span>A tiny word game made for big, unnecessary victories.</span>
-        <span>Unofficial fan-made parody · Not affiliated with any other game</span>
+        <span>Unofficial parody · Not affiliated with any other game</span>
       </footer>
     </main>
   </body>

@@ -33,9 +33,9 @@ function addConnection(x1, y1, x2, y2) {
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.classList.add("graph-line");
   line.setAttribute("x1", String(x1 * 10));
-  line.setAttribute("y1", String(y1 * 7.6));
+  line.setAttribute("y1", String(y1 * 10));
   line.setAttribute("x2", String(x2 * 10));
-  line.setAttribute("y2", String(y2 * 7.6));
+  line.setAttribute("y2", String(y2 * 10));
   lines.append(line);
 }
 
