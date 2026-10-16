@@ -296,6 +296,180 @@ button {
   background: #fff;
 }
 
+.departures {
+  width: min(1016px, calc(100% - 32px));
+  margin: 6px auto 34px;
+  border: 1px solid #b8bdc2;
+  background: #fff;
+}
+
+.departures-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px 20px 13px;
+  border-bottom: 1px solid #e2e4e7;
+}
+
+.departures-eyebrow {
+  color: #6a7076;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.departures-heading h2 {
+  margin: 5px 0 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.departures-meta {
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+  color: #70767b;
+  font-size: 10px;
+}
+
+.departures-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #277451;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.departures-live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2c9c61;
+  box-shadow: 0 0 0 3px #e8f5eb;
+}
+
+.departure-legend {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px 5px;
+}
+
+.transport-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.transport-train {
+  border-color: #b8c8e8;
+  color: #174987;
+  background: #edf3ff;
+}
+
+.transport-bus {
+  border-color: #e5d09b;
+  color: #70500d;
+  background: #fff7df;
+}
+
+.departure-list {
+  padding: 3px 20px 12px;
+}
+
+.departure-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.7fr) minmax(0, 2fr) minmax(70px, auto);
+  align-items: center;
+  gap: 14px;
+  min-height: 59px;
+  padding: 9px 0;
+  border-bottom: 1px solid #eceef0;
+  animation: arrive 180ms ease-out;
+}
+
+.departure-row:last-child {
+  border-bottom: 0;
+}
+
+.departure-time {
+  display: grid;
+  gap: 3px;
+}
+
+.departure-time strong {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.departure-time > span {
+  color: #71767b;
+  font-size: 10px;
+}
+
+.departure-journey {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.departure-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.departure-route {
+  overflow: hidden;
+  color: #51575d;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.departure-status {
+  justify-self: end;
+  color: #317550;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.departure-status.is-delayed {
+  color: #a44831;
+}
+
+.departure-message {
+  margin: 11px 0;
+  color: #63696e;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.departure-error {
+  color: #a12d2d;
+}
+
+.departures-credit {
+  margin: 0;
+  padding: 10px 20px;
+  border-top: 1px solid #e2e4e7;
+  color: #777d82;
+  font-size: 10px;
+}
+
+.departures-credit a {
+  color: #31568d;
+}
+
 .graph-stage {
   position: relative;
   width: 100%;
@@ -1144,6 +1318,15 @@ button {
     padding: 25px 0 16px;
   }
 
+  .departures {
+    margin-top: 0;
+  }
+
+  .departure-row {
+    grid-template-columns: minmax(84px, 0.6fr) minmax(0, 1.5fr) auto;
+    gap: 8px;
+  }
+
   .game-panel h1 {
     font-size: 18px;
   }
@@ -1177,6 +1360,42 @@ button {
     min-height: 54px;
     flex-direction: column;
     gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .departures-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .departures-meta {
+    justify-items: start;
+  }
+
+  .departure-legend,
+  .departure-list {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .departure-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .departure-time {
+    grid-column: 1;
+  }
+
+  .departure-journey {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .departure-status {
+    grid-column: 2;
+    grid-row: 1;
   }
 }
 

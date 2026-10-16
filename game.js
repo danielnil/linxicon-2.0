@@ -145,6 +145,182 @@ resetButton.addEventListener("click", () => {
 
 setSeeds();
 
+const departureList = document.querySelector("#departure-list");
+const departuresUpdated = document.querySelector("#departures-updated");
+const enturEndpoint = "https://api.entur.io/journey-planner/v3/graphql";
+const departuresQuery = `
+  query LademoenToStjordal($dateTime: DateTime!) {
+    trip(
+      from: { place: "NSR:StopPlace:271" }
+      to: { place: "NSR:StopPlace:58948" }
+      dateTime: $dateTime
+      numTripPatterns: 20
+    ) {
+      tripPatterns {
+        aimedStartTime
+        expectedStartTime
+        expectedEndTime
+        legs {
+          mode
+          aimedStartTime
+          expectedStartTime
+          expectedEndTime
+          fromPlace { name }
+          toPlace { name }
+          line { publicCode name transportMode }
+        }
+      }
+    }
+  }
+`;
+let departuresLoading = false;
+
+function formatDepartureTime(dateTime) {
+  return new Intl.DateTimeFormat("nb-NO", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Oslo",
+  }).format(new Date(dateTime));
+}
+
+function getTransitLegs(pattern) {
+  return pattern.legs.filter((leg) => leg.line && ["bus", "rail", "train"].includes(leg.mode));
+}
+
+function renderDeparture(pattern) {
+  const transitLegs = getTransitLegs(pattern);
+  if (!transitLegs.length) {
+    return null;
+  }
+
+  const row = document.createElement("article");
+  row.className = "departure-row";
+
+  const time = document.createElement("div");
+  time.className = "departure-time";
+  const departureTime = document.createElement("strong");
+  departureTime.textContent = formatDepartureTime(pattern.expectedStartTime);
+  const arrivalTime = document.createElement("span");
+  arrivalTime.textContent = `Arrives ${formatDepartureTime(pattern.expectedEndTime)}`;
+  time.append(departureTime, arrivalTime);
+
+  const journey = document.createElement("div");
+  journey.className = "departure-journey";
+  const services = document.createElement("div");
+  services.className = "departure-services";
+  transitLegs.forEach((leg) => {
+    const isBus = leg.mode === "bus";
+    const badge = document.createElement("span");
+    badge.className = `transport-badge ${isBus ? "transport-bus" : "transport-train"}`;
+    badge.textContent = `${isBus ? "Bus" : "Train"} ${leg.line.publicCode || ""}`.trim();
+    services.append(badge);
+  });
+
+  const route = document.createElement("span");
+  route.className = "departure-route";
+  const firstService = transitLegs[0];
+  const lastService = transitLegs[transitLegs.length - 1];
+  const routeStart = firstService.fromPlace.name;
+  const routeEnd = lastService.toPlace.name;
+  route.textContent = `${routeStart} → ${routeEnd}`;
+  journey.append(services, route);
+
+  const status = document.createElement("span");
+  status.className = "departure-status";
+  const difference = Math.round(
+    (new Date(pattern.expectedStartTime).getTime() - new Date(pattern.aimedStartTime).getTime()) / 60000,
+  );
+  if (difference > 0) {
+    status.textContent = `+${difference} min`;
+  } else if (difference < 0) {
+    status.textContent = `Early ${Math.abs(difference)} min`;
+  } else {
+    status.textContent = "On time";
+  }
+  if (difference > 0) {
+    status.classList.add("is-delayed");
+  }
+
+  row.append(time, journey, status);
+  return row;
+}
+
+async function loadDepartures() {
+  if (departuresLoading) {
+    return;
+  }
+  departuresLoading = true;
+  departureList.setAttribute("aria-busy", "true");
+
+  try {
+    const response = await fetch(enturEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ET-Client-Name": "linxicon-internal-game",
+      },
+      body: JSON.stringify({
+        query: departuresQuery,
+        variables: { dateTime: new Date().toISOString() },
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Entur returned HTTP ${response.status}.`);
+    }
+
+    const result = await response.json();
+    if (result.errors?.length) {
+      throw new Error(result.errors.map((error) => error.message).join(" "));
+    }
+
+    const patterns = result.data?.trip?.tripPatterns;
+    if (!Array.isArray(patterns)) {
+      throw new Error("Entur returned an unexpected departures response.");
+    }
+
+    const uniqueDepartures = new Map();
+    patterns
+      .filter((pattern) => pattern.legs.at(-1)?.toPlace?.name?.includes("Stjørdal"))
+      .sort((first, second) => new Date(first.expectedStartTime) - new Date(second.expectedStartTime))
+      .forEach((pattern) => {
+        const transitLegs = getTransitLegs(pattern);
+        if (!transitLegs.length) {
+          return;
+        }
+        const key = transitLegs.map((leg) => `${leg.line.publicCode}:${leg.expectedStartTime}`).join("|");
+        if (!uniqueDepartures.has(key)) {
+          uniqueDepartures.set(key, pattern);
+        }
+      });
+
+    departureList.replaceChildren();
+    const rows = [...uniqueDepartures.values()].slice(0, 8).map(renderDeparture).filter(Boolean);
+    if (rows.length) {
+      departureList.append(...rows);
+    } else {
+      const message = document.createElement("p");
+      message.className = "departure-message";
+      message.textContent = "No upcoming train or bus journeys found to Stjørdal.";
+      departureList.append(message);
+    }
+    departuresUpdated.textContent = `Updated ${formatDepartureTime(new Date().toISOString())}`;
+  } catch (error) {
+    const message = document.createElement("p");
+    message.className = "departure-message departure-error";
+    message.textContent = `Could not load Entur departures: ${error.message}`;
+    departureList.replaceChildren(message);
+    departuresUpdated.textContent = "Will retry shortly";
+  } finally {
+    departuresLoading = false;
+    departureList.setAttribute("aria-busy", "false");
+  }
+}
+
+loadDepartures();
+window.setInterval(loadDepartures, 60000);
+
 const adCarousel = document.querySelector("#rail-ad-carousel");
 const adSlides = [...adCarousel.querySelectorAll(".rail-ad-slide")];
 const adDots = document.querySelector("#rail-ad-dots");
