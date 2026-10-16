@@ -17,22 +17,22 @@ const gapWordTwoValue = document.querySelector("#gap-word-two-value");
 const gapPercent = document.querySelector("#gap-percent");
 
 const starterWordPairs = [
-  ["vessel", "fix"],
-  ["coffee", "morning"],
-  ["river", "bridge"],
-  ["garden", "train"],
-  ["paper", "plane"],
-  ["moon", "tide"],
-  ["copper", "wire"],
-  ["winter", "coat"],
-  ["stone", "wall"],
-  ["music", "note"],
-  ["bread", "toast"],
-  ["cloud", "rain"],
-  ["light", "house"],
-  ["book", "shelf"],
-  ["green", "grass"],
-  ["signal", "track"],
+  ["anchor", "cactus"],
+  ["velvet", "comet"],
+  ["whistle", "glacier"],
+  ["wallet", "thunder"],
+  ["ladder", "ocean"],
+  ["button", "volcano"],
+  ["pillow", "compass"],
+  ["candle", "tunnel"],
+  ["suitcase", "mushroom"],
+  ["needle", "desert"],
+  ["helmet", "tulip"],
+  ["engine", "feather"],
+  ["mirror", "pumpkin"],
+  ["calendar", "dolphin"],
+  ["brick", "violin"],
+  ["harbor", "mitten"],
 ];
 let initialWords = chooseStarterWords();
 const bridgePositions = [
