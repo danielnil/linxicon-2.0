@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#fafafa">
     <meta name="description" content="Linxicøn — a no-fail word-connection game where every answer wins on the first try.">
     <title>Linxicøn — a no-fail word game</title>
-    <link rel="stylesheet" href="styles.css?v=cc92a37">
-    <script src="game.js?v=cc92a37" defer></script>
+    <link rel="stylesheet" href="styles.css?v=bus-popover">
+    <script src="game.js?v=bus-popover" defer></script>
   </head>
   <body>
     <main class="app-shell">
@@ -74,26 +74,33 @@
         </section>
       </section>
 
-      <section class="departures" aria-labelledby="departures-title">
-        <div class="departures-heading">
-          <div>
-            <span class="departures-eyebrow">LIVE FROM ENTUR</span>
-            <h2 id="departures-title">Lademoen → Stjørdal</h2>
+      <aside class="departures-widget" id="departures-widget">
+        <section class="departures" id="departures-panel" aria-labelledby="departures-title" hidden>
+          <div class="departures-heading">
+            <div>
+              <span class="departures-eyebrow">LIVE FROM ENTUR</span>
+              <h2 id="departures-title">Lademoen → Stjørdal</h2>
+            </div>
+            <div class="departures-meta">
+              <span class="departures-live"><i aria-hidden="true"></i> Live departures</span>
+              <span id="departures-updated">Fetching departures…</span>
+            </div>
           </div>
-          <div class="departures-meta">
-            <span class="departures-live"><i aria-hidden="true"></i> Live departures</span>
-            <span id="departures-updated">Fetching departures…</span>
+          <div class="departure-legend" aria-label="Transport types">
+            <span class="transport-badge transport-train"><span aria-hidden="true">▰</span> Train</span>
+            <span class="transport-badge transport-bus"><span aria-hidden="true">▰</span> Bus</span>
           </div>
-        </div>
-        <div class="departure-legend" aria-label="Transport types">
-          <span class="transport-badge transport-train"><span aria-hidden="true">▰</span> Train</span>
-          <span class="transport-badge transport-bus"><span aria-hidden="true">▰</span> Bus</span>
-        </div>
-        <div class="departure-list" id="departure-list" aria-live="polite" aria-busy="true">
-          <p class="departure-message">Finding trains and buses to Stjørdal…</p>
-        </div>
-        <p class="departures-credit">Journey data from <a href="https://entur.no/" target="_blank" rel="noreferrer">Entur</a>. Times may change.</p>
-      </section>
+          <div class="departure-list" id="departure-list" aria-live="polite" aria-busy="true">
+            <p class="departure-message">Finding trains and buses to Stjørdal…</p>
+          </div>
+          <p class="departures-credit">Journey data from <a href="https://entur.no/" target="_blank" rel="noreferrer">Entur</a>. Times may change.</p>
+        </section>
+        <button class="departures-toggle" id="departures-toggle" type="button" aria-expanded="false" aria-controls="departures-panel">
+          <span class="departures-toggle-indicator" aria-hidden="true"></span>
+          <span>Bus &amp; train times</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"></path></svg>
+        </button>
+      </aside>
 
       <aside class="ad-rail" aria-label="Advertisement: basement sewer services">
         <span class="ad-label">ADVERTISEMENT</span>

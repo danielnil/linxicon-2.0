@@ -147,6 +147,9 @@ setSeeds();
 
 const departureList = document.querySelector("#departure-list");
 const departuresUpdated = document.querySelector("#departures-updated");
+const departuresWidget = document.querySelector("#departures-widget");
+const departuresPanel = document.querySelector("#departures-panel");
+const departuresToggle = document.querySelector("#departures-toggle");
 const enturEndpoint = "https://api.entur.io/journey-planner/v3/graphql";
 const departuresQuery = `
   query LademoenToStjordal($dateTime: DateTime!) {
@@ -320,6 +323,28 @@ async function loadDepartures() {
 
 loadDepartures();
 window.setInterval(loadDepartures, 60000);
+
+function setDeparturesOpen(isOpen) {
+  departuresPanel.hidden = !isOpen;
+  departuresToggle.setAttribute("aria-expanded", String(isOpen));
+}
+
+departuresToggle.addEventListener("click", () => {
+  setDeparturesOpen(departuresPanel.hidden);
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target instanceof Node && !departuresWidget.contains(event.target)) {
+    setDeparturesOpen(false);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !departuresPanel.hidden) {
+    setDeparturesOpen(false);
+    departuresToggle.focus();
+  }
+});
 
 const adCarousel = document.querySelector("#rail-ad-carousel");
 const adSlides = [...adCarousel.querySelectorAll(".rail-ad-slide")];
